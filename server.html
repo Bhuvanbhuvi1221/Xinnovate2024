@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Integration</title>
+</head>
+<body>
+    <button id="connectButton">Connect MetaMask</button>
+    <script>
+        document.getElementById('connectButton').addEventListener('click', async () => {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    console.log('Connected account:', accounts[0]);
+                } catch (error) {
+                    console.error('User rejected the request:', error);
+                }
+            } else {
+                alert('MetaMask is not installed. Please install it to use this application.');
+            }
+        });
+    </script>
+</body>
+</html>
